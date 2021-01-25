@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <div class="container mt-3 mb-3">
+       <div class="media mb-3">
+          <img src="{{ user.profile.image.url }}" class="align-self-start mr-3 " alt="...">
+          <div class="media-body">
+            <h5 class="mt-0">{{ user.username }}</h5>
+              {% if user.email %}
+                <p>{{ user.email }}</p>
+              {% else %}
+                <p>email address is not given </p>
+              {% endif %}
+          </div>
+        </div>
+    <div class="border bg-success px-3 py-3 mb-3 container">
+        <center><p>Return to home page</p><a href="{% url 'index' %}" class="text-capitalize btn btn-outline-danger">home</a></center>
+    </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container form-control">
+                 {{ u_form|crispy }}
+                 {{ i_form|crispy }}
+                <center><button type="submit" class="btn btn-outline-primary mt-3 mb-3">update</button></center>
+            </div>
+        </form>
+{% endblock %}

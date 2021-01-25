@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2 class="text-capitalize">logged out successfully </h2>
+    <div class="border bg-success px-3 py-3 mb-3 container">
+        <center><p>You can login again </p><a href="{% url 'user-login' %}" class="text-capitalize btn btn-outline-danger">Login</a></center>
+    </div>
+{% endblock %}

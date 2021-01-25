@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt -3">
+        <div class="row mb-2 mt-2 border bg-warning">
+            <div class="col-md-8 mb-2 mt-2">
+                <div class="media">
+                  <img src="{{ object.auther.profile.image.url }}" class="img-fluid img-thumbnail mr-3" alt="...">
+                  <div class="media-body">
+                    <h5 class="mt-0">{{ object.title }}</h5>
+                      {{ object.content }}<br>
+                      {{ object.date_posted|date:"F d, Y"}}<br>
+                      {% if object.auther == user %}
+                        <a href="{% url 'post-update' object.id %}" class="btn btn-outline-primary">Update</a>
+                        <a href="{% url 'post-delete' object.id %}" class="btn btn-outline-danger">Delete</a>
+                      {% endif %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
